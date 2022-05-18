@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "A0mHE11buXUSjcJSgWLQfDi7oKltewIRREteHh3NKYLT2d3rWNvio/D0yqMFcBdk5r3h1qGLBHHyHUXk5XK0BA==",
+  "success": true,
+  "projectFilePath": "D:\\LearningProgramming\\myComplier\\Loops\\Loops.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sjc\\.nuget\\packages\\fsharp.core\\6.0.4\\fsharp.core.6.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

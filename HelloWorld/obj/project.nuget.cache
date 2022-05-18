@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/i4JwQFnp59iZ+qLb3A1y51CLXR8aab3j0AhKsy7s1Q2VB40XaDjONPPXqeeTHcvuETFz1FQqrBsUrAvUJbwuQ==",
+  "success": true,
+  "projectFilePath": "D:\\LearningProgramming\\myComplier\\HelloWorld\\HelloWorld.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sjc\\.nuget\\packages\\fsharp.core\\6.0.4\\fsharp.core.6.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

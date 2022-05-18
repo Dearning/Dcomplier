@@ -1,0 +1,3 @@
+D:\LearningProgramming\myComplier\Cards\obj\Debug\net6.0\Cards.fsproj.AssemblyReference.cache
+D:\LearningProgramming\myComplier\Cards\obj\Debug\net6.0\Cards.AssemblyInfoInputs.cache
+D:\LearningProgramming\myComplier\Cards\obj\Debug\net6.0\Cards.AssemblyInfo.fs
