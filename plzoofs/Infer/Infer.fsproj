@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <NoWarn>62</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ast.fs" />
+    <Compile Include="parser.fs" />
+    <Compile Include="lexer.fs" />
+    <Compile Include="unify.fs" />
+    <Compile Include="infer.fs" />
+    <Compile Include="repl.fs" />
+    
+    <FsLex Include="lexer.fsl">
+    <OtherFlags>--module Lexer --unicode</OtherFlags>
+    </FsLex>
+    <FsYacc Include="parser.fsy">
+        <OtherFlags> -v --module Parser</OtherFlags>
+    </FsYacc>
+    <PackageReference Include="FsLexYacc" Version="10.2.0" />
+   
+    </ItemGroup>
+</Project>

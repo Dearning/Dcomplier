@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M4xk3XOJxeil4INunb5f5H/vvZ9Zl1HVr/rImWwTu90pIPpQ3GQmTgABZSLwF1eao9IoI72z7GRX7NtNkmLUQA==",
+  "success": true,
+  "projectFilePath": "D:\\LearningProgramming\\myComplier\\CardGame\\CardGame.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sjc\\.nuget\\packages\\fsharp.core\\6.0.4\\fsharp.core.6.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

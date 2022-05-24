@@ -1,0 +1,428 @@
+        Output file describing compiled parser placed in parser.fs and parser.fsi
+------------------------
+states = 
+state 0:  items:    _starttoplevel ->  . toplevel
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 4
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  
+    gotos:    
+    goto toplevel: 1
+    goto expression: 2
+
+
+state 1:  items:    _starttoplevel -> toplevel . 
+  actions:    action 'EOF' (noprec):   accept
+    action 'RPAREN' (noprec):   accept
+    action 'LPAREN' (noprec):   accept
+    action 'UMINUS' (noprec):   accept
+    action 'DIVIDE' (noprec):   accept
+    action 'TIMES' (noprec):   accept
+    action 'MINUS' (noprec):   accept
+    action 'PLUS' (noprec):   accept
+    action 'EQUAL' (noprec):   accept
+    action 'VARIABLE' (noprec):   accept
+    action 'NUMERAL' (noprec):   accept
+    action 'error' (noprec):   accept
+    action '#' (noprec):   accept
+    action '$$' (noprec):   accept
+  immediate action:   accept  gotos:
+
+  state 2:  items:    toplevel -> expression . 'EOF'
+    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+  actions:    action 'EOF' (noprec):   shift 3
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   error
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (explicit left 9998):   shift 19
+    action 'TIMES' (explicit left 9998):   shift 16
+    action 'MINUS' (explicit left 9997):   shift 18
+    action 'PLUS' (explicit left 9997):   shift 17
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   error
+    action 'NUMERAL' (noprec):   error
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:
+
+  
+  state 3:  items:    toplevel -> expression 'EOF' . 
+  actions:    action 'EOF' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'RPAREN' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'LPAREN' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'UMINUS' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'DIVIDE' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'TIMES' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'MINUS' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'PLUS' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'EQUAL' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'VARIABLE' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'NUMERAL' (noprec):   reduce toplevel --> expression 'EOF'
+    action 'error' (noprec):   reduce toplevel --> expression 'EOF'
+    action '#' (noprec):   reduce toplevel --> expression 'EOF'
+    action '$$' (noprec):   reduce toplevel --> expression 'EOF'
+  immediate action:   reduce toplevel --> expression 'EOF'  gotos:
+  
+  state 4:  items:    toplevel -> 'VARIABLE' . 'EQUAL' expression 'EOF'
+    expression -> 'VARIABLE' . 
+  actions:    action 'EOF' (noprec):   reduce expression --> 'VARIABLE'
+    action 'RPAREN' (noprec):   reduce expression --> 'VARIABLE'
+    action 'LPAREN' (noprec):   reduce expression --> 'VARIABLE'
+    action 'UMINUS' (noprec):   reduce expression --> 'VARIABLE'
+    action 'DIVIDE' (noprec):   reduce expression --> 'VARIABLE'
+    action 'TIMES' (noprec):   reduce expression --> 'VARIABLE'
+    action 'MINUS' (noprec):   reduce expression --> 'VARIABLE'
+    action 'PLUS' (noprec):   reduce expression --> 'VARIABLE'
+    action 'EQUAL' (noprec):   shift 5
+    action 'VARIABLE' (noprec):   reduce expression --> 'VARIABLE'
+    action 'NUMERAL' (noprec):   reduce expression --> 'VARIABLE'
+    action 'error' (noprec):   reduce expression --> 'VARIABLE'
+    action '#' (noprec):   reduce expression --> 'VARIABLE'
+    action '$$' (noprec):   reduce expression --> 'VARIABLE'
+  immediate action: <none>  gotos:
+
+  state 5:  items:    toplevel -> 'VARIABLE' 'EQUAL' . expression 'EOF'
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 6
+
+state 6:  items:    toplevel -> 'VARIABLE' 'EQUAL' expression . 'EOF'
+    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+  actions:    action 'EOF' (noprec):   shift 7
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   error
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (explicit left 9998):   shift 19
+    action 'TIMES' (explicit left 9998):   shift 16
+    action 'MINUS' (explicit left 9997):   shift 18
+    action 'PLUS' (explicit left 9997):   shift 17
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   error
+    action 'NUMERAL' (noprec):   error
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:
+  
+  state 7:  items:    toplevel -> 'VARIABLE' 'EQUAL' expression 'EOF' . 
+  actions:    action 'EOF' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'RPAREN' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'LPAREN' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'UMINUS' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'DIVIDE' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'TIMES' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'MINUS' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'PLUS' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'EQUAL' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'VARIABLE' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'NUMERAL' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action 'error' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action '#' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+    action '$$' (noprec):   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'
+  immediate action:   reduce toplevel --> 'VARIABLE' 'EQUAL' expression 'EOF'  gotos:
+  
+  state 8:  items:    expression -> 'VARIABLE' . 
+  actions:    action 'EOF' (noprec):   reduce expression --> 'VARIABLE'
+    action 'RPAREN' (noprec):   reduce expression --> 'VARIABLE'
+    action 'LPAREN' (noprec):   reduce expression --> 'VARIABLE'
+    action 'UMINUS' (noprec):   reduce expression --> 'VARIABLE'
+    action 'DIVIDE' (noprec):   reduce expression --> 'VARIABLE'
+    action 'TIMES' (noprec):   reduce expression --> 'VARIABLE'
+    action 'MINUS' (noprec):   reduce expression --> 'VARIABLE'
+    action 'PLUS' (noprec):   reduce expression --> 'VARIABLE'
+    action 'EQUAL' (noprec):   reduce expression --> 'VARIABLE'
+    action 'VARIABLE' (noprec):   reduce expression --> 'VARIABLE'
+    action 'NUMERAL' (noprec):   reduce expression --> 'VARIABLE'
+    action 'error' (noprec):   reduce expression --> 'VARIABLE'
+    action '#' (noprec):   reduce expression --> 'VARIABLE'
+    action '$$' (noprec):   reduce expression --> 'VARIABLE'
+  immediate action:   reduce expression --> 'VARIABLE'  gotos:
+  
+  state 9:  items:    expression -> 'NUMERAL' . 
+  actions:    action 'EOF' (noprec):   reduce expression --> 'NUMERAL'
+    action 'RPAREN' (noprec):   reduce expression --> 'NUMERAL'
+    action 'LPAREN' (noprec):   reduce expression --> 'NUMERAL'
+    action 'UMINUS' (noprec):   reduce expression --> 'NUMERAL'
+    action 'DIVIDE' (noprec):   reduce expression --> 'NUMERAL'
+    action 'TIMES' (noprec):   reduce expression --> 'NUMERAL'
+    action 'MINUS' (noprec):   reduce expression --> 'NUMERAL'
+    action 'PLUS' (noprec):   reduce expression --> 'NUMERAL'
+    action 'EQUAL' (noprec):   reduce expression --> 'NUMERAL'
+    action 'VARIABLE' (noprec):   reduce expression --> 'NUMERAL'
+    action 'NUMERAL' (noprec):   reduce expression --> 'NUMERAL'
+    action 'error' (noprec):   reduce expression --> 'NUMERAL'
+    action '#' (noprec):   reduce expression --> 'NUMERAL'
+    action '$$' (noprec):   reduce expression --> 'NUMERAL'
+  immediate action:   reduce expression --> 'NUMERAL'  gotos:state 10:  items:    expression -> expression . 'TIMES' expression
+    expression -> expression 'TIMES' expression . 
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+  actions:    action 'EOF' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'RPAREN' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'LPAREN' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'UMINUS' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'DIVIDE' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'TIMES' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'MINUS' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'PLUS' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'EQUAL' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'VARIABLE' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'NUMERAL' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action 'error' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action '#' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+    action '$$' (explicit left 9998):   reduce expression --> expression 'TIMES' expression
+  immediate action: <none>  gotos:state 11:  items:    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression 'PLUS' expression . 
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+  actions:    action 'EOF' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'RPAREN' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'LPAREN' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'UMINUS' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'DIVIDE' (explicit left 9998):   shift 19
+    action 'TIMES' (explicit left 9998):   shift 16
+    action 'MINUS' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'PLUS' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'EQUAL' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'VARIABLE' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'NUMERAL' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action 'error' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action '#' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+    action '$$' (explicit left 9997):   reduce expression --> expression 'PLUS' expression
+  immediate action: <none>  gotos:
+  
+  state 12:  items:    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression 'MINUS' expression . 
+    expression -> expression . 'DIVIDE' expression
+  actions:    action 'EOF' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'RPAREN' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'LPAREN' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'UMINUS' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'DIVIDE' (explicit left 9998):   shift 19
+    action 'TIMES' (explicit left 9998):   shift 16
+    action 'MINUS' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'PLUS' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'EQUAL' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'VARIABLE' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'NUMERAL' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action 'error' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action '#' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+    action '$$' (explicit left 9997):   reduce expression --> expression 'MINUS' expression
+  immediate action: <none>  gotos:
+  
+  state 13:  items:    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+    expression -> expression 'DIVIDE' expression . 
+  actions:    action 'EOF' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'RPAREN' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'LPAREN' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'UMINUS' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'DIVIDE' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'TIMES' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'MINUS' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'PLUS' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'EQUAL' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'VARIABLE' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'NUMERAL' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action 'error' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action '#' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+    action '$$' (explicit left 9998):   reduce expression --> expression 'DIVIDE' expression
+  immediate action: <none>  gotos:
+  
+  state 14:  items:    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+    expression -> 'MINUS' expression . 
+  actions:    action 'EOF' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'RPAREN' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'LPAREN' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'UMINUS' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'DIVIDE' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'TIMES' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'MINUS' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'PLUS' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'EQUAL' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'VARIABLE' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'NUMERAL' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action 'error' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action '#' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+    action '$$' (explicit nonassoc 9999):   reduce expression --> 'MINUS' expression
+  immediate action: <none>  gotos:
+  
+  state 15:  items:    expression -> expression . 'TIMES' expression
+    expression -> expression . 'PLUS' expression
+    expression -> expression . 'MINUS' expression
+    expression -> expression . 'DIVIDE' expression
+    expression -> 'LPAREN' expression . 'RPAREN'
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   shift 22
+    action 'LPAREN' (noprec):   error
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (explicit left 9998):   shift 19
+    action 'TIMES' (explicit left 9998):   shift 16
+    action 'MINUS' (explicit left 9997):   shift 18
+    action 'PLUS' (explicit left 9997):   shift 17
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   error
+    action 'NUMERAL' (noprec):   error
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:
+  
+  state 16:  items:    expression -> expression 'TIMES' . expression
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 10
+state 17:  items:    expression -> expression 'PLUS' . expression
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 11
+state 18:  items:    expression -> expression 'MINUS' . expression
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 12
+
+state 19:  items:    expression -> expression 'DIVIDE' . expression
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 13
+
+state 20:  items:    expression -> 'MINUS' . expression
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 14
+
+
+state 21:  items:    expression -> 'LPAREN' . expression 'RPAREN'
+  actions:    action 'EOF' (noprec):   error
+    action 'RPAREN' (noprec):   error
+    action 'LPAREN' (noprec):   shift 21
+    action 'UMINUS' (noprec):   error
+    action 'DIVIDE' (noprec):   error
+    action 'TIMES' (noprec):   error
+    action 'MINUS' (explicit left 9997):   shift 20
+    action 'PLUS' (noprec):   error
+    action 'EQUAL' (noprec):   error
+    action 'VARIABLE' (noprec):   shift 8
+    action 'NUMERAL' (noprec):   shift 9
+    action 'error' (noprec):   error
+    action '#' (noprec):   error
+    action '$$' (noprec):   error
+  immediate action: <none>  gotos:    goto expression: 15
+
+state 22:  items:    expression -> 'LPAREN' expression 'RPAREN' . 
+  actions:    action 'EOF' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'RPAREN' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'LPAREN' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'UMINUS' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'DIVIDE' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'TIMES' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'MINUS' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'PLUS' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'EQUAL' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'VARIABLE' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'NUMERAL' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action 'error' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action '#' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+    action '$$' (noprec):   reduce expression --> 'LPAREN' expression 'RPAREN'
+  immediate action:   reduce expression --> 'LPAREN' expression 'RPAREN'  gotos:
+startStates = 0
+------------------------
